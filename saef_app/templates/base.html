@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %} - Soluciones SAEF, C.A.</title>
+    {% block head %}
+    <link rel="stylesheet" type="text/css" media="screen"
+    /href="{{ url_for('static', filename='css/main.css') }}">
+    {% endblock %}
+</head>
+<body>
+
+<header>
+    {% include 'header.html' %}
+</header>
+
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+<div class="flashes-div">
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+</div>
+
+<footer>
+    {% include 'footer.html' %}
+</footer>
+
+</body>
+</html>

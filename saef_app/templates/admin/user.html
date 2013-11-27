@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %} {{title}} {% endblock %}
+{% block content %}
+<div class="user">
+<h2>Listar usuarios</h2>
+<div class="page">
+{% for user in users.items %}
+<p>{{ user.username }}</p>
+{% endfor %}
+</div>
+<div class="pagination">
+{% if users.has_prev %}
+    <a href="{{ url_for('admin.user', page = users.prev_num) }}"><< Atrás</a>
+{% else %}
+<< Atrás
+{% endif %} |
+
+{% if users.has_next %}
+    <a href="{{ url_for('admin.user', page = users.next_num) }}">Siguiente >></a>
+{% else %}
+Siguiente >>
+{% endif %} |
+</div>
+</div>
+{% endblock %}
