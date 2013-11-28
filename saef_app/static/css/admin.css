@@ -1,0 +1,100 @@
+/* ========================================================================
+admin.css - saef (css for admin backend)
+===========================================================================*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-weight:inherit;
+    font-style:inherit;
+    font-size:100%;
+    font-family:inherit;
+    vertical-align:baseline;
+}
+
+html
+{
+    min-height: 100%;
+    height:100%;
+    margin:0;
+    padding: 0;
+
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4; 
+    font-family: "Liberation Sans","Lucida Grande", "Luxi Sans", "Bitstream Vera Sans", helvetica, verdana, arial, sans-serif;
+    color: #666;  
+}
+
+header {
+    background-color: #D2D1D0;
+}
+
+h2
+{
+    font-size:19px;
+    margin-bottom:14px;
+    font-family:'Acme', sans-serif;
+}
+
+a, a:visited, a:hover {
+    color: #0066CC;
+    text-decoration: none;
+}
+
+
+#mainNav {
+    font-size:16px;
+    font-weight:bold;
+    height: 30px;
+    background-color:#777777;
+}
+
+#mainNav ul {
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+#mainNav ul li {
+
+    float: left;
+
+}
+
+#mainNav ul li a {
+    display: block;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    padding: 0.5em 1.5em;
+    font-size: 0.77em;
+    height: 1.5em;
+}
+
+#mainNav ul li:hover {
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color:rgba(255,255,255,0.1);
+}
+
+#container {
+    padding:10px;
+}
+
+#content {
+display: block;
+}
