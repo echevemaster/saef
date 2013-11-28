@@ -57,6 +57,17 @@ def edituser(user_id):
     quser = User.query.filter_by(username=user_id).first()
     form = AddUserForm(obj=quser)
     form_action = url_for('admin.edituser', user_id=user_id)
+    if request.method == 'POST' and form.validate():
+        user = User(form.name.data,
+                    form.surname.data,
+                    form.username.data,
+                    form.email.data,
+                    form.password.data,
+                    form.active.data
+                    )
+        db.session.add(user)
+        db.session.commit()
+        flash(u'Usuario actualizado')
     return render_template('admin/add_user.html',
                            title=u"Editar usuario",
                            form_action=form_action,
