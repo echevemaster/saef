@@ -54,7 +54,7 @@ def adduser():
 
 @bundle.route('/admin/user/edit/<user_id>', methods=['GET', 'POST'])
 def edituser(user_id):
-    quser = User.query.filter_by(username=user_id).first()
+    quser = User.query.get(user_id)
     form = EditUserForm(obj=quser)
     form_action = url_for('admin.edituser', user_id=user_id)
     if request.method == 'POST' and form.validate():
