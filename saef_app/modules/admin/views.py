@@ -5,7 +5,8 @@ from saef_app.core.database import db
 from saef_app.core.forms import AddUserForm
 from saef_app.core.models import User
 from saef_app.core.common import RESULTS_PER_PAGE
-bundle = Blueprint('admin', __name__, template_folder='templates')
+bundle = Blueprint('admin', __name__, template_folder='templates',
+                   static_folder='static')
 
 
 @bundle.route('/admin', methods=['GET', 'POST'])

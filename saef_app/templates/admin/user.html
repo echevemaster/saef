@@ -1,12 +1,26 @@
-{% extends "base.html" %}
+{% extends "admin/base.html" %}
 {% block title %} {{title}} {% endblock %}
 {% block content %}
-<div class="user">
+<div id="content">
 <h2>Listar usuarios</h2>
 <div class="page">
+<table class="pure-table pure-table-bordered">
+<thead>
+<tr>
+    <th>Usuario</td>
+    <th colspan="2">Acciones</td>
+</tr>
+</thead>
+<tbody>
 {% for user in users.items %}
-<p>{{ user.username }}</p>
+<tr>
+<td>{{ user.username }}</td>
+<td><a href="{{ url_for('admin.user') }}" alt="Editar item">Editar</a></td>
+<td><a href="{{ url_for('admin.user') }}" alt="Eliminar item">Eliminar</a></td>
+</tr>
 {% endfor %}
+</tbody>
+</table>
 </div>
 <div class="pagination">
 {% if users.has_prev %}
@@ -21,5 +35,6 @@
 Siguiente >>
 {% endif %}
 </div>
+<a class="pure-button pure-button-primary" href="{{ url_for('admin.adduser') }}">Agregar usuario</a>
 </div>
 {% endblock %}
