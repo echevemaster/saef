@@ -33,6 +33,7 @@ def user(page=1):
 @bundle.route('/admin/user/add', methods=['GET', 'POST'])
 def adduser():
     form = AddUserForm()
+    form_action = url_for('admin.adduser')
     if request.method == 'POST' and form.validate():
         user = User(form.name.data,
                     form.surname.data,
@@ -47,4 +48,17 @@ def adduser():
         return redirect(url_for('admin.user'))
     return render_template('admin/add_user.html',
                            title=u"Crear usuario",
+                           form_action=form_action,
                            form=form)
+
+
+@bundle.route('/admin/user/edit/<user_id>', methods=['GET', 'POST'])
+def edituser(user_id):
+    quser = User.query.filter_by(username=user_id).first()
+    form = AddUserForm(obj=quser)
+    form_action = url_for('admin.edituser', user_id=user_id)
+    return render_template('admin/add_user.html',
+                           title=u"Editar usuario",
+                           form_action=form_action,
+                           form=form,
+                           user_id=user_id)
