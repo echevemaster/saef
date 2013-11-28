@@ -19,3 +19,10 @@ class AddUserForm(Form):
     confirm = PasswordField(u'Repita su contraseña')
     active = BooleanField(u'Activar usuario?', [Required(message=u'Campo \
                                                          Requerido')])
+
+
+class EditUserForm(AddUserForm):
+    password = PasswordField(u'Contraseña', [
+                             Required(message=u'Campo Requerido'),
+                             ])
+    confirm = None

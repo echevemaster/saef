@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, abort, request, redirect, \
     flash, url_for
 from jinja2 import TemplateNotFound
 from saef_app.core.database import db
-from saef_app.core.forms import AddUserForm
+from saef_app.core.forms import AddUserForm, EditUserForm
 from saef_app.core.models import User
 from saef_app.core.common import RESULTS_PER_PAGE
 bundle = Blueprint('admin', __name__, template_folder='templates',
@@ -55,17 +55,14 @@ def adduser():
 @bundle.route('/admin/user/edit/<user_id>', methods=['GET', 'POST'])
 def edituser(user_id):
     quser = User.query.filter_by(username=user_id).first()
-    form = AddUserForm(obj=quser)
+    form = EditUserForm(obj=quser)
     form_action = url_for('admin.edituser', user_id=user_id)
     if request.method == 'POST' and form.validate():
-        user = User(form.name.data,
-                    form.surname.data,
-                    form.username.data,
-                    form.email.data,
-                    form.password.data,
-                    form.active.data
-                    )
-        db.session.add(user)
+        quser.name = form.name.data,
+        quser.surname = form.surname.data,
+        quser.username = form.username.data,
+        quser.email = form.email.data,
+        quser.active = form.active.data
         db.session.commit()
         flash(u'Usuario actualizado')
     return render_template('admin/add_user.html',
