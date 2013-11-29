@@ -17,12 +17,9 @@ class AddUserForm(Form):
                                                          no coinciden')
                              ])
     confirm = PasswordField(u'Repita su contraseña')
-    active = BooleanField(u'Activar usuario?', [Required(message=u'Campo \
-                                                         Requerido')])
+    active = BooleanField(u'Activar usuario?')
 
 
 class EditUserForm(AddUserForm):
-    password = PasswordField(u'Contraseña', [
-                             Required(message=u'Campo Requerido'),
-                             ])
+    password = None
     confirm = None

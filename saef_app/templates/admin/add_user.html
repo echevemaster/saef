@@ -20,11 +20,14 @@
     {{ form.email.label }}
     {{ form.email }}
     
+    {% if form.password != None %}
     {{ form.password.label }}
     {{ form.password }}
+
    
     {{ form.confirm.label }}
     {{ form.confirm }}
+    {% endif %}
     
     {{ form.active.label }}
     {{ form.active }}

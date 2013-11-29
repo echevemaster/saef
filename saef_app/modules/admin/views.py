@@ -54,17 +54,15 @@ def adduser():
 
 @bundle.route('/admin/user/edit/<user_id>', methods=['GET', 'POST'])
 def edituser(user_id):
-    quser = User.query.get(user_id)
+    # quser = User.query.filter_by(username=user_id).first()
+    quser = User.query.filter(User.username == user_id).first()
     form = EditUserForm(obj=quser)
     form_action = url_for('admin.edituser', user_id=user_id)
     if request.method == 'POST' and form.validate():
-        quser.name = form.name.data,
-        quser.surname = form.surname.data,
-        quser.username = form.username.data,
-        quser.email = form.email.data,
-        quser.active = form.active.data
+        form.populate_obj(quser)
         db.session.commit()
         flash(u'Usuario actualizado')
+        return redirect(url_for('admin.user'))
     return render_template('admin/add_user.html',
                            title=u"Editar usuario",
                            form_action=form_action,
