@@ -108,3 +108,20 @@ def addcategory():
                            title=u"Crear Categoria",
                            form_action=form_action,
                            form=form)
+
+
+@bundle.route('/admin/category/edit/<category_id>', methods=['GET', 'POST'])
+def editcategory(category_id):
+    qcategory = Category.query.filter(Category.id == category_id).first_or_404()
+    form = AddCategoryForm(obj=qcategory)
+    form_action = url_for('admin.editcategory', category_id=category_id)
+    if request.method == 'POST' and form.validate():
+        form.populate_obj(qcategory)
+        db.session.commit()
+        flash(u'Categoria actualizada')
+        return redirect(url_for('admin.category'))
+    return render_template('admin/category_forms.html',
+                           title=u"Editar categoria",
+                           form_action=form_action,
+                           form=form,
+                           category_id=category_id)
