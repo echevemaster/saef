@@ -54,8 +54,7 @@ def adduser():
 
 @bundle.route('/admin/user/edit/<user_id>', methods=['GET', 'POST'])
 def edituser(user_id):
-    # quser = User.query.filter_by(username=user_id).first()
-    quser = User.query.filter(User.username == user_id).first()
+    quser = User.query.filter(User.username == user_id).first_or_404()
     form = EditUserForm(obj=quser)
     form_action = url_for('admin.edituser', user_id=user_id)
     if request.method == 'POST' and form.validate():
@@ -68,3 +67,14 @@ def edituser(user_id):
                            form_action=form_action,
                            form=form,
                            user_id=user_id)
+
+
+@bundle.route('/admin/user/delete', methods=['GET', 'POST'])
+def deleteuser():
+    ret_data = request.args.get('item')
+    duser = User.query.filter(User.username == ret_data).first_or_404()
+    if request.method == 'GET':
+        db.session.delete(duser)
+        db.session.commit()
+        flash(u'Usuario eliminado')
+    return "OK"

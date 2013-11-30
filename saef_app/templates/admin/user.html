@@ -8,6 +8,8 @@
 <thead>
 <tr>
     <th>Usuario</td>
+    <th>Nombres</th>
+    <th>Apellidos</th>
     <th colspan="2">Acciones</td>
 </tr>
 </thead>
@@ -15,8 +17,10 @@
 {% for user in users.items %}
 <tr>
 <td>{{ user.username }}</td>
+<td>{{ user.name }}</td>
+<td>{{ user.surname }} </td>
 <td><a href="{{ url_for('admin.edituser', user_id = user.username) }}" alt="Editar item">Editar</a></td>
-<td><a href="{{ url_for('admin.user') }}" alt="Eliminar item">Eliminar</a></td>
+<td><a href="javascript:void(null)" alt="Eliminar item" class="delete_item_user" id="{{ user.username }}">Eliminar</a></td>
 </tr>
 {% endfor %}
 </tbody>
@@ -37,4 +41,6 @@ Siguiente >>
 </div>
 <a class="pure-button pure-button-primary" href="{{ url_for('admin.adduser') }}">Agregar usuario</a>
 </div>
+
+{% include '/admin/_dialog.html' %}
 {% endblock %}
