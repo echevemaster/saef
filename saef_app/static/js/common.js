@@ -1,6 +1,6 @@
 $(function()
 {
-    function delete_item(id,url) {
+    function delete_item(id,url,url_redirect) {
         var id = id;
         $('#dialog-confirm').dialog({
             resizable:false,
@@ -8,7 +8,9 @@ $(function()
             modal: true,
             buttons: {
                 "Eliminar?": function() {
-                    $.get(url, { item : id } );
+                    $.get(url, { item : id }, function(){ 
+                        window.location.replace(url_redirect)
+                    });
                 },
                 Cancelar: function() {
                     $(this).dialog("close");
@@ -20,7 +22,7 @@ $(function()
 
     $(function()
         $(".delete_item_user").click(function() {
-            delete_item(this.id,"/admin/user/delete")
+            delete_item(this.id,"/admin/user/delete","/admin/user")
          }
         )
     )
