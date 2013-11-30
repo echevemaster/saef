@@ -1,5 +1,8 @@
 from saef_app.core.database import db
 
+ROLE_USER = 0
+ROLE_ADMIN = 1
+
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -10,14 +13,16 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True)
     email = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255))
+    role = db.Column(db.Integer, default=ROLE_USER)
     active = db.Column(db.Boolean())
 
-    def __init__(self, name, surname, username, email, password,  active):
+    def __init__(self, name, surname, username, email, password, role, active):
         self.name = name
         self.surname = surname
         self.username = username
         self.email = email
         self.password = password
+        self.role = role
         self.active = active
 
     def __repr__(self):

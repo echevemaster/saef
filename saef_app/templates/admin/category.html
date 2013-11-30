@@ -17,7 +17,7 @@
 <td>{{ category.name }}</td>
 <td>{{ category.description }}</td>
 <td><a href="{{ url_for('admin.editcategory', category_id = category.id) }}" alt="Editar item">Editar</a></td>
-<td><a href="javascript:void(null)" alt="Eliminar item" class="delete_item_user" id="{{ category.id }}">Eliminar</a></td>
+<td><a href="javascript:void(null)" alt="Eliminar item" class="delete_item_category" id="{{ category.id }}">Eliminar</a></td>
 </tr>
 {% endfor %}
 </tbody>

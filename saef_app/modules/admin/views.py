@@ -39,6 +39,7 @@ def adduser():
                     form.username.data,
                     form.email.data,
                     form.password.data,
+                    form.role.data,
                     form.active.data
                     )
         db.session.add(user)
@@ -112,7 +113,8 @@ def addcategory():
 
 @bundle.route('/admin/category/edit/<category_id>', methods=['GET', 'POST'])
 def editcategory(category_id):
-    qcategory = Category.query.filter(Category.id == category_id).first_or_404()
+    qcategory = Category.query.filter(Category.id ==
+                                      category_id).first_or_404()
     form = AddCategoryForm(obj=qcategory)
     form_action = url_for('admin.editcategory', category_id=category_id)
     if request.method == 'POST' and form.validate():
@@ -125,3 +127,14 @@ def editcategory(category_id):
                            form_action=form_action,
                            form=form,
                            category_id=category_id)
+
+
+@bundle.route('/admin/category/delete', methods=['GET', 'POST'])
+def deletecategory():
+    ret_data = request.args.get('item')
+    duser = Category.query.filter(Category.id == ret_data).first_or_404()
+    if request.method == 'GET':
+        db.session.delete(duser)
+        db.session.commit()
+        flash(u'Categoria eliminada')
+    return "OK"

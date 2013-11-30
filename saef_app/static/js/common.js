@@ -26,4 +26,12 @@ $(function()
          }
         )
     )
+
+    $(function()
+        $(".delete_item_category").click(function() {
+            delete_item(this.id,"/admin/category/delete","/admin/categories")
+         }
+        )
+    )
+
 });

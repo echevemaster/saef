@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask.ext.wtf import Form
-from wtforms import TextField, BooleanField, PasswordField
+from wtforms import TextField, BooleanField, PasswordField, SelectField
 from wtforms.validators import Required, Email, EqualTo
 
 
@@ -16,6 +16,12 @@ class AddUserForm(Form):
                              EqualTo('confirm', message=u'Las contraseñas \
                                                          no coinciden')
                              ])
+    role = SelectField(u'Rol',
+                       choices=[(0, 'Usuario'),
+                                (1, 'Admin')
+                                ],
+                       coerce=int
+                       )
     confirm = PasswordField(u'Repita su contraseña')
     active = BooleanField(u'Activar usuario?')
 
