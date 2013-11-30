@@ -23,3 +23,10 @@ class AddUserForm(Form):
 class EditUserForm(AddUserForm):
     password = None
     confirm = None
+
+
+class AddCategoryForm(Form):
+    name = TextField(u'Categoria', [Required(message=u'Campo requerido')])
+    description = TextField(u'Descripcion',
+                            [Required(message=u'Campo requerido')])
+    active = BooleanField(u'Activar categoria?')

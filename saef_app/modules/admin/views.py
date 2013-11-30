@@ -2,8 +2,8 @@ from flask import Blueprint, render_template, abort, request, redirect, \
     flash, url_for
 from jinja2 import TemplateNotFound
 from saef_app.core.database import db
-from saef_app.core.forms import AddUserForm, EditUserForm
-from saef_app.core.models import User
+from saef_app.core.forms import AddUserForm, EditUserForm, AddCategoryForm
+from saef_app.core.models import User, Category
 from saef_app.core.common import RESULTS_PER_PAGE
 bundle = Blueprint('admin', __name__, template_folder='templates',
                    static_folder='static')
@@ -17,7 +17,6 @@ def index():
         abort(404)
 
 
-@bundle.route('/admin', methods=['GET', 'POST'])
 @bundle.route('/admin/user', methods=['GET', 'POST'])
 @bundle.route('/admin/user/<int:page>', methods=['GET', 'POST'])
 def user(page=1):
@@ -78,3 +77,33 @@ def deleteuser():
         db.session.commit()
         flash(u'Usuario eliminado')
     return "OK"
+
+
+@bundle.route('/admin/categories', methods=['GET', 'POST'])
+@bundle.route('/admin/categories/<int:page>', methods=['GET', 'POST'])
+def category(page=1):
+    categories = Category.query.paginate(page, RESULTS_PER_PAGE, False)
+    try:
+        return render_template('admin/category.html',
+                               title=u'Listar categorias',
+                               categories=categories)
+    except TemplateNotFound:
+        abort(404)
+
+
+@bundle.route('/admin/category/add', methods=['GET', 'POST'])
+def addcategory():
+    form = AddCategoryForm()
+    form_action = url_for('admin.addcategory')
+    if request.method == 'POST' and form.validate():
+        category = Category(form.name.data,
+                            form.description.data,
+                            )
+        db.session.add(category)
+        db.session.commit()
+        flash(u'categoria Creada')
+        return redirect(url_for('admin.category'))
+    return render_template('admin/category_forms.html',
+                           title=u"Crear Categoria",
+                           form_action=form_action,
+                           form=form)

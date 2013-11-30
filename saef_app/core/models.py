@@ -29,9 +29,18 @@ class Category(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
+    description = db.Column(db.String(255))
     pages = db.relationship('Page', backref='category',
                             lazy='dynamic')
     active = db.Column(db.Boolean())
+
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
+        self.active = active
+
+    def __repr__(self):
+        return '<name %r' % self.name
 
 
 class Page(db.Model):
