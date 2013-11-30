@@ -98,6 +98,7 @@ def addcategory():
     if request.method == 'POST' and form.validate():
         category = Category(form.name.data,
                             form.description.data,
+                            form.active.data
                             )
         db.session.add(category)
         db.session.commit()

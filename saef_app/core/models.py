@@ -34,7 +34,7 @@ class Category(db.Model):
                             lazy='dynamic')
     active = db.Column(db.Boolean())
 
-    def __init__(self, name, description):
+    def __init__(self, name, description, active):
         self.name = name
         self.description = description
         self.active = active
