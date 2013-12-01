@@ -4,6 +4,7 @@
 <div id="content">
 <h2>Listar categorias</h2>
 <div class="page">
+{% if categories.total != 0 %}
 <table class="pure-table pure-table-bordered">
 <thead>
 <tr>
@@ -36,6 +37,13 @@
 Siguiente >>
 {% endif %}
 </div>
+
+{% else %}
+
+<p>No hay resultados que mostrar</p>
+
+{% endif %}
+
 <a class="pure-button pure-button-primary" href="{{ url_for('admin.addcategory') }}">Agregar categoria</a>
 </div>
 
