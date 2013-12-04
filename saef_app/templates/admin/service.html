@@ -1,0 +1,50 @@
+{% extends "admin/base.html" %}
+{% block title %} {{title}} {% endblock %}
+{% block content %}
+<div id="content">
+<h2>Listar Servicios</h2>
+<div class="page">
+{% if services.total != 0 %}
+<table class="pure-table pure-table-bordered">
+<thead>
+<tr>
+    <th>Titulo</td>
+    <th colspan="2">Acciones</td>
+</tr>
+</thead>
+<tbody>
+{% for service in services.items %}
+<tr>
+<td>{{ service.title }}</td>
+<td><a href="" alt="Editar item">Editar</a></td>
+<td><a href="javascript:void(null)" alt="Eliminar item" class="delete_item_category" id="{{ service.id }}">Eliminar</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<div class="pagination">
+{% if services.has_prev %}
+    <a href="{{ url_for('admin.service', page = services.prev_num) }}"><< Atrás</a>
+{% else %}
+<< Atrás
+{% endif %} |
+
+{% if services.has_next %}
+    <a href="{{ url_for('admin.service', page = services.next_num) }}">Siguiente >></a>
+{% else %}
+Siguiente >>
+{% endif %}
+</div>
+
+{% else %}
+
+<p>No hay resultados que mostrar</p>
+
+{% endif %}
+
+<a class="pure-button pure-button-primary" href="">Agregar Servicio</a>
+</div>
+
+{% include '/admin/_dialog.html' %}
+{% endblock %}

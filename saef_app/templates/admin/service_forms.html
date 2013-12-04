@@ -1,0 +1,43 @@
+{% extends "/admin/base.html" %}
+{% block title %} {{title}} {% endblock %}
+{% block content %}
+<div class="user">
+
+<form method="post" enctype="multipart/form-data" action="{{ form_action }}" class="pure-form pure-form-stacked">
+    <fieldset>
+        <legend>{{ title }}</legend>
+
+    {{ form.hidden_tag() }}
+    {{ form.title.label }}
+    {{ form.title }}
+
+    {{ form.slug.label }}
+    {{ form.slug }}
+    
+    {{ form.description.label }}
+    {{ form.description }}
+
+    {{ form.date.label }}
+    {{ form.date }}
+
+    {{ form.image_url.label }}
+    {{ form.image_url }}
+
+    {{ form.category_id.label }}
+    {{ form.category_id }}
+    
+    {{ form.active.label }}
+    {{ form.active }}
+
+    
+    <br/>
+    <input type="submit" class="pure-button pure-button-primary" value="{{ title }}"/>
+</fieldset>
+</form>
+  {% for error in form.errors %}
+    <p class="error">{{ form[error].label }} {{ form.errors[error][0] }}</p>
+  {% endfor %}
+
+</div>
+
+{% endblock %}

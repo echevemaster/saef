@@ -1,0 +1,12 @@
+.name img {
+    width:10em;
+    padding-bottom: 1em;
+}
+
+footer {
+  @include panel($panel-color, $panel-padding);
+  width: 100%;
+  margin: 0;
+  position: fixed;
+  bottom: 0;
+}

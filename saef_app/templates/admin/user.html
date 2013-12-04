@@ -5,7 +5,7 @@
 <h2>Listar usuarios</h2>
 <div class="page">
 {% if users.total != 0 %}
-<table class="pure-table pure-table-bordered">
+<table class="responsive">
 <thead>
 <tr>
     <th>Usuario</td>
@@ -43,7 +43,7 @@ Siguiente >>
 {% else %}
 <p>No hay resultados que mostrar</p>
 {% endif %}
-<a class="pure-button pure-button-primary" href="{{ url_for('admin.adduser') }}">Agregar usuario</a>
+<a class="tiny radius button" href="{{ url_for('admin.adduser') }}">Agregar usuario</a>
 </div>
 
 {% include '/admin/_dialog.html' %}

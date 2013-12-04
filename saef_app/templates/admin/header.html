@@ -1,12 +1,25 @@
-<div id="navbar">
-<div class="header-primary">
-<img src="{{ url_for('static', filename='images/saef_logo.png') }}"/>
-</div>
-<div id="mainNav">
-    <ul>
-        <li id="IndexTab"><a href="{{ url_for('admin.index') }}">Inicio</a></li>
+<!-- navbar -->
+<nav class="top-bar" data-topbar>
+    <ul class="title-area">
+        <li class="name">
+            <h1>
+                <a href="{{ url_for('admin.index') }}">
+                    <img src="{{ url_for('static', filename='images/saef_logo.png') }}"/>
+                </a>
+            </h1>
+        </li>
+    </ul>
+
+    <section class="top-bar-section">
+    <ul class="right">
+        <li id= "HomeTab" class="active"><a href="{{ url_for('admin.index') }}">Inicio</a></li>
         <li id="UserTab"><a href="{{ url_for('admin.user') }}">Usuarios</a></li>
         <li id="CategoryTab"><a href="{{ url_for('admin.category') }}">Categorias</a></li>
+        <li id="ServiceTab"><a href="{{ url_for('admin.service') }}">Servicios</a></li>
     </ul>
-</div>
-</div>
+
+</section>
+</nav>
+
+<!--<img src="{{ url_for('static', filename='images/saef_logo.png') }}"/>-->
+<!--endnav -->

@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import os
+from flask.ext.uploads import (UploadSet, IMAGES)
 basedir = os.path.abspath(os.path.dirname(__file__))
+photos = UploadSet('photos', IMAGES)
 
 
 class Config(object):
@@ -24,6 +26,9 @@ class DevelopmentConfig(Config):
     CSRF_ENABLED = True
     CSRF_SESSION_KEY = 'your-session-key'
     RESULTS_PER_PAGE = 10
+    UPLOADS_FOLDER = os.path.realpath('.') + '/static/uploads/'
+    UPLOADED_PHOTOS_DEST = (os.path.realpath('.') +
+                            '/saef_app/static/uploads/photos/')
 
 
 class TestingConfig(Config):

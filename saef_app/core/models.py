@@ -35,7 +35,7 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
     description = db.Column(db.String(255))
-    pages = db.relationship('Page', backref='category',
+    pages = db.relationship('Service', backref='category',
                             lazy='dynamic')
     active = db.Column(db.Boolean())
 
@@ -48,21 +48,27 @@ class Category(db.Model):
         return '<name %r' % self.name
 
 
-class Page(db.Model):
-    __tablename__ = 'pages'
+class Service(db.Model):
+    __tablename__ = 'services'
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
+    slug = db.Column(db.String(255))
     description = db.Column(db.Text())
     date = db.Column(db.DateTime())
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
+    image_url = db.Column(db.String())
     active = db.Column(db.Boolean())
 
-    def __init__(self, title, description, date, category_id):
+    def __init__(self, title, slug, description, date, category_id,
+                 image_url, active):
         self.title = title
+        self.slug = slug
         self.description = description
         self.date = date
+        self.image_url = image_url
         self.category_id = category_id
+        self.active = active
 
     def __repr__(self):
         return '<Title %r' % self.title

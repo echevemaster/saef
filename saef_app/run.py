@@ -40,7 +40,7 @@ def drop_database():
 @manager.command
 def run():
     """Run application"""
-    app.run(debug=True)
+    app.run(debug=True, host='192.168.1.103', port=5000)
 
 if __name__ == '__main__':
     build_app()
